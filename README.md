@@ -12,16 +12,23 @@ Mini agente con LLM construido con [eve](https://eve.dev), el framework de agent
 
 ```bash
 npm install
-cp .env.example .env   # y rellena TWELVE_DATA_API_KEY
+cp .env.example .env   # y rellena TWELVE_DATA_API_KEY y GROQ_API_KEY
 eve dev
 ```
 
 El TUI de desarrollo abre una sesión interactiva con el agente. Las tools viven en `agent/tools/`, la identidad y el tono en `agent/instructions.md` y el modelo en `agent/agent.ts`.
+
+## Modelo
+
+- En desarrollo local (`eve dev`) usa tu suscripción de ChatGPT (`chatgpt("gpt-6-luna")`).
+- En producción (Vercel) usa Groq vía `GROQ_API_KEY` (modelo configurable con `GROQ_MODEL`).
 
 ## Despliegue
 
 ```bash
 eve deploy
 ```
+
+Antes de desplegar, define en Vercel (Settings → Environment Variables) `GROQ_API_KEY` y `TWELVE_DATA_API_KEY`.
 
 En producción, sustituye `placeholderAuth()` en `agent/channels/eve.ts` por un proveedor de autenticación real.
