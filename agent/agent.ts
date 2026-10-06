@@ -12,8 +12,8 @@ const groq = createOpenAICompatible({
 });
 
 // Modelo Groq configurable vía GROQ_MODEL (ver console.groq.com para los
-// ids vigentes; p. ej. llama-3.3-70b-versatile).
-const GROQ_MODEL = process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile";
+// ids vigentes; p. ej. openai/gpt-oss-120b).
+const GROQ_MODEL = process.env.GROQ_MODEL ?? "openai/gpt-oss-120b";
 
 export default defineAgent(
   process.env.NODE_ENV === "production"
