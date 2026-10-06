@@ -1,17 +1,25 @@
-import { defineTool} from "eve/tools";
+import { defineTool } from "eve/tools";
 import { z } from "zod";
 import { fetchCompanyValue } from "../lib/twelveData";
 
-export default defineTool({ 
-    description: "Get the company value",
+export default defineTool({
+  description:
+    "Obtiene la última cotización intradía de una empresa por su símbolo " +
+    "bursátil (por ejemplo AAPL, MSFT, SAN.MC). Devuelve último precio, " +
+    "apertura, máximo, mínimo y variación respecto a la vela anterior.",
 
-    inputSchema: z.object({
-        empresa: z.string().min(2).describe("Simbolo de la empresa, por ejemplo: AAPL, MSFT, GOOGL"),  
-    }),
+  inputSchema: z.object({
+    empresa: z
+      .string()
+      .min(1)
+      .describe(
+        "Símbolo bursátil de la empresa, por ejemplo: AAPL, MSFT, SAN.MC",
+      ),
+  }),
 
-    execute: async ( {empresa} ) => {
-          
-        //return `El valor de la ${empresa} es $100`;
-        return fetchCompanyValue(empresa);
-    },
+  label: {
+    start: ({ empresa }) => `Consultando cotización de ${empresa}`,
+  },
+
+  execute: async ({ empresa }) => fetchCompanyValue(empresa),
 });

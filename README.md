@@ -1,35 +1,27 @@
 # market-agent
 
-This is an [eve](https://eve.dev) agent bootstrapped with [`eve init`](https://eve.dev/docs/reference/cli#eve-init).
+Mini agente con LLM construido con [eve](https://eve.dev), el framework de agentes de Vercel.
 
-## Getting started
+## Qué hace
 
-First, run the development server:
+- **Cotizaciones**: última cotización intradía de empresas por símbolo bursátil (TwelveData).
+- **Meteorología**: tiempo actual y pronóstico por ubicación (Open-Meteo, sin API key).
+- **Archivos del proyecto**: listar, leer y escribir archivos locales con protecciones anti path-traversal (cada escritura requiere aprobación humana).
+
+## Puesta en marcha
 
 ```bash
+npm install
+cp .env.example .env   # y rellena TWELVE_DATA_API_KEY
 eve dev
 ```
 
-The development TUI opens an interactive session where you can send messages to your agent.
+El TUI de desarrollo abre una sesión interactiva con el agente. Las tools viven en `agent/tools/`, la identidad y el tono en `agent/instructions.md` y el modelo en `agent/agent.ts`.
 
-Start by editing `agent/instructions.md` to define the agent's identity, purpose, tone, and response guidelines. Configure its model and runtime behavior in `agent/agent.ts`.
-
-Add capabilities under `agent/`, including tools, connections, channels, skills, subagents, and schedules. eve reloads your changes as you work.
-
-## Learn more
-
-To learn more about eve, explore these resources:
-
-- [eve documentation](https://eve.dev/docs) — learn about eve's features and authoring APIs.
-- [Build an Agent tutorial](https://eve.dev/docs/tutorial/first-agent) — build and deploy an agent step by step.
-- [eve on GitHub](https://github.com/vercel/eve) — view the source and contribute.
-
-## Deploy on Vercel
-
-Deploy your agent to [Vercel](https://vercel.com) from the project root:
+## Despliegue
 
 ```bash
 eve deploy
 ```
 
-`eve deploy` links a Vercel project if needed and deploys the agent to production. See the [eve deployment documentation](https://eve.dev/docs/guides/deployment/vercel) for authentication, environment variables, and deployment options.
+En producción, sustituye `placeholderAuth()` en `agent/channels/eve.ts` por un proveedor de autenticación real.
