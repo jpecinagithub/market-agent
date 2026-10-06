@@ -9,7 +9,7 @@
   "scripts": {
     "build": "eve build",
     "deploy": "eve deploy",
-    "dev": "eve dev",
+    "dev": "set \"PATH=%CD%\\node_modules\\@openai\\codex-win32-x64\\vendor\\x86_64-pc-windows-msvc\\bin;%PATH%\" && node --disable-warning=DEP0190 ./node_modules/eve/bin/eve.js dev --no-default-extensions",
     "eval": "eve eval",
     "start": "eve start",
     "typecheck": "tsc"
@@ -21,11 +21,12 @@
     "zod": "4.5.4"
   },
   "devDependencies": {
+    "@openai/codex": "^0.160.0",
     "@types/node": "24.x",
+    "just-bash": "^3.6.0",
     "typescript": "7.0.2"
   },
   "engines": {
     "node": "24.x"
   }
-
 }

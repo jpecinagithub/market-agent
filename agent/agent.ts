@@ -1,6 +1,7 @@
 import { defineAgent } from "eve";
+import { chatgpt } from "eve/models/openai";
 
 export default defineAgent({
-  model: "openai/gpt-6-luna-fast",
+  model: chatgpt("gpt-6-luna"),
   reasoning: "high",
 });
